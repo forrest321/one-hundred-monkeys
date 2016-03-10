@@ -10,7 +10,7 @@ import (
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 abcdefghijklmnopqrstuvwxyz" +
 	"~!@#$%^&*()-_+={}[]\\|<,>.?/\"';:`"
 
-const Maxlen = 100
+const MaxLen = 100
 
 func init() {
 	monkehSeed := int64(time.Now().Nanosecond())
@@ -20,12 +20,12 @@ func init() {
 func RandStrings(N int) string {
 	r := make([]string, N)
 	ri := 0
-	buf := make([]byte, Maxlen)
+	buf := make([]byte, MaxLen)
 	known := map[string]bool{}
 
 	for i := 0; i < N; i++ {
 	retry:
-		l := rand.Intn(Maxlen)
+		l := rand.Intn(MaxLen)
 		for j := 0; j < l; j++ {
 			buf[j] = chars[rand.Intn(len(chars))]
 		}
