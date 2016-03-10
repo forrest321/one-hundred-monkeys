@@ -10,7 +10,8 @@ import (
 
 const (
 	FileName = "scrawl.txt"
-	StringToFind = "Roll Tide"
+	//StringToFind = "Roll Tide"
+	StringToFind = "abc"
 	TimeLimitInSeconds = 15
 )
 type monkey struct {
@@ -19,7 +20,8 @@ type monkey struct {
 }
 
 func monkeySmash() string {
-	return rands.RandStrings(50)
+	//return rands.RandStrings(50)
+	return "abc"
 }
 
 func (a monkey) DoWork() {
@@ -36,9 +38,16 @@ func main() {
 		fmt.Println("we did it?: ", gotDid)
 		didWeDoIt = gotDid
 
-		rightNow := time.Now().Sub(startTime).Nanoseconds() / 1000
-		if rightNow >= TimeLimitInSeconds {
-			fmt.Println("we didn't do it")
+		secondsElapsed := time.Now().Sub(startTime).Nanoseconds() / 1000
+		if secondsElapsed >= TimeLimitInSeconds {
+			if didWeDoIt {
+				fmt.Println("we did it !!!!")
+				fmt.Println("++++++++++++++++")
+			} else {
+				fmt.Println("we didn't do it")
+				fmt.Println("----------------")
+			}
+
 		}
 
 	}
