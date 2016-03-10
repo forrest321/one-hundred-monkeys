@@ -4,9 +4,9 @@ import (
 	"github.com/c3mb0/go-do-work"
 	"fmt"
 	"github.com/forrest321/one-hundred-monkeys/rands"
-
 	"github.com/forrest321/one-hundred-monkeys/files"
 )
+
 const (
 	FileName = "scrawl.txt"
 	StringToFind = "Roll Tide"

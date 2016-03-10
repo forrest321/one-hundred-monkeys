@@ -15,6 +15,7 @@ func check(e error) {
 
 func WriteString(filename, content string) {
 	f, err := os.Create(filename)
+	defer f.Close()
 	check(err)
 	w := bufio.NewWriter(f)
 	_, err = w.WriteString(content)
@@ -27,7 +28,6 @@ func WeDidIt(fileName, stringToFind string) bool {
 		//fmt.Print("err in reading file. %s", err)
 		return false
 	}
-
 	fileString := string(fileBytes)
 	return strings.Contains(fileString, stringToFind)
 }

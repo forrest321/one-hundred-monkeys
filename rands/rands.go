@@ -13,8 +13,7 @@ const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 abcdefghijklmnopqrstuvwxyz" 
 const MaxLen = 100
 
 func init() {
-	monkehSeed := int64(time.Now().Nanosecond())
-	rand.Seed(monkehSeed)
+	rand.Seed(int64(time.Now().Nanosecond()))
 }
 
 func RandStrings(N int) string {
