@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"github.com/forrest321/one-hundred-monkeys/rands"
 	"github.com/forrest321/one-hundred-monkeys/files"
+	"time"
 )
 
 const (
 	FileName = "scrawl.txt"
 	StringToFind = "Roll Tide"
+	TimeLimitInSeconds = 15
 )
 type monkey struct {
 	smash  string
@@ -27,13 +29,21 @@ func (a monkey) DoWork() {
 
 func main() {
 	var didWeDoIt = false
-
+	startTime := time.Now()
 	for didWeDoIt == false {
 		goMyPretties()
 		gotDid := monkeyfiles.WeDidIt(FileName, StringToFind)
-		fmt.Print("we did it?: %v", gotDid)
+		fmt.Println("we did it?: ", gotDid)
 		didWeDoIt = gotDid
+
+		rightNow := time.Now().Sub(startTime).Nanoseconds() / 1000
+		if rightNow >= TimeLimitInSeconds {
+			fmt.Println("we didn't do it")
+		}
+
 	}
+	endTime := time.Now()
+	fmt.Print("something happened! Started at %s and ended at %s", startTime, endTime)
 }
 
 func goMyPretties() {
@@ -48,7 +58,6 @@ func goMyPretties() {
 	go func() {
 		for res := range result {
 			monkeyfiles.WriteString(FileName, res)
-			fmt.Print(res, " ")
 		}
 	}()
 	pool.Wait()
