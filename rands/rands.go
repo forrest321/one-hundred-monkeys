@@ -10,7 +10,7 @@ import (
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 abcdefghijklmnopqrstuvwxyz" +
 	"~!@#$%^&*()-_+={}[]\\|<,>.?/\"';:`"
 
-const Maxlen = 10
+const Maxlen = 100
 
 func init() {
 	monkehSeed := int64(time.Now().Nanosecond())
