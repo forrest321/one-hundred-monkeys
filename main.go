@@ -10,8 +10,8 @@ import (
 
 const (
 	FileName = "scrawl.txt"
-	//StringToFind = "Roll Tide"
-	StringToFind = "abc"
+	StringToFind = "Roll Tide"
+	//StringToFind = "abc"
 	TimeLimitInSeconds = 15
 )
 type monkey struct {
@@ -20,8 +20,8 @@ type monkey struct {
 }
 
 func monkeySmash() string {
-	//return rands.RandStrings(50)
-	return "abc"
+	return rands.RandStrings(50)
+	//return "abc"
 }
 
 func (a monkey) DoWork() {
@@ -30,15 +30,16 @@ func (a monkey) DoWork() {
 }
 
 func main() {
-	var didWeDoIt = false
+	didWeDoIt := false
+	quitNow := false
 	startTime := time.Now()
-	for didWeDoIt == false {
+	for !didWeDoIt && !quitNow {
 		goMyPretties()
 		gotDid := monkeyfiles.WeDidIt(FileName, StringToFind)
 		fmt.Println("we did it?: ", gotDid)
 		didWeDoIt = gotDid
 
-		secondsElapsed := time.Now().Sub(startTime).Nanoseconds() / 1000
+		secondsElapsed := time.Now().Sub(startTime).Seconds()
 		if secondsElapsed >= TimeLimitInSeconds {
 			if didWeDoIt {
 				fmt.Println("we did it !!!!")
@@ -47,12 +48,11 @@ func main() {
 				fmt.Println("we didn't do it")
 				fmt.Println("----------------")
 			}
-
+			quitNow = true
 		}
-
 	}
 	endTime := time.Now()
-	fmt.Print("something happened! Started at %s and ended at %s", startTime, endTime)
+	fmt.Printf("Started at %s and ended at %s", startTime, endTime)
 }
 
 func goMyPretties() {
