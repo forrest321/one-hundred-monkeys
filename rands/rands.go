@@ -7,8 +7,10 @@ import (
 	"fmt"
 )
 
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 abcdefghijklmnopqrstuvwxyz" +
-	"~!@#$%^&*()-_+={}[]\\|<,>.?/\"';:`"
+//const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 abcdefghijklmnopqrstuvwxyz" +
+//	"~!@#$%^&*()-_+={}[]\\|<,>.?/\"';:`"
+
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
 
 const MaxLen = 100
 

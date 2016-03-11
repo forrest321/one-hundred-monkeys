@@ -12,7 +12,7 @@ const (
 	FileName = "scrawl.txt"
 	StringToFind = "Roll Tide"
 	//StringToFind = "abc"
-	TimeLimitInSeconds = 15
+	TimeLimitInSeconds = 10
 )
 type monkey struct {
 	smash  string
@@ -20,11 +20,11 @@ type monkey struct {
 }
 
 func monkeySmash() string {
-	return rands.RandStrings(50)
+	return rands.RandStrings(100)
 	//return "abc"
 }
 
-func (a monkey) DoWork() {
+func (a *monkey) DoWork() {
 	a.smash = monkeySmash()
 	a.makewords <- a.smash
 }
@@ -57,11 +57,11 @@ func main() {
 
 func goMyPretties() {
 	result := make(chan string)
-	monkmonk := monkey{
-		smash:  rands.RandStrings(50),
+	monkmonk := &monkey{
+		smash:  rands.RandStrings(100),
 		makewords: result,
 	}
-	pool := gdw.NewWorkerPool(10)
+	pool := gdw.NewWorkerPool(100)
 	defer pool.Close()
 	pool.Add(monkmonk, 100)
 	go func() {

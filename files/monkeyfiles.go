@@ -5,6 +5,7 @@ import (
 	"os"
 	"io/ioutil"
 	"strings"
+	"fmt"
 )
 
 func check(e error) {
@@ -19,13 +20,16 @@ func WriteString(filename, content string) {
 	check(err)
 	w := bufio.NewWriter(f)
 	_, err = w.WriteString(content)
+	if err != nil {
+		fmt.Print("err in writing file. %s", err)
+	}
 	w.Flush()
 }
 
 func WeDidIt(fileName, stringToFind string) bool {
 	fileBytes, err := ioutil.ReadFile(fileName)
 	if err != nil {
-		//fmt.Print("err in reading file. %s", err)
+		fmt.Print("err in reading file. %s", err)
 		return false
 	}
 	fileString := string(fileBytes)
